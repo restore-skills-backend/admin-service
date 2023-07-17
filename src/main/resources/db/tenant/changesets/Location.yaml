@@ -1,0 +1,85 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: location
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: uuid
+                  type: UUID
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: location_id
+                  type: VARCHAR(255)
+              - column:
+                  name: contact_number
+                  type: VARCHAR(255)
+              - column:
+                  name: email_id
+                  type: VARCHAR(255)
+              - column:
+                  name: fax_id
+                  type: VARCHAR(255)
+              - column:
+                  name: information
+                  type: VARCHAR(255)
+              - column:
+                  name: avatar
+                  type: VARCHAR(255)
+              - column:
+                  name: physical_address_id
+                  type: BIGINT
+                  constraints:
+                    references: address(id)
+                    foreignKeyName: physical_address_id
+              - column:
+                  name: billing_address_id
+                  type: BIGINT
+                  constraints:
+                    references: address(id)
+                    foreignKeyName: billing_address_id
+              - column:
+                  name: active
+                  type: BOOLEAN
+              - column:
+                  name: archive
+                  type: BOOLEAN
+  - changeSet:
+      id: addColumnForBase
+      author: Rohit
+      changes:
+        - addColumn:
+            tableName: location
+            columns:
+              - column:
+                  name: created_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+              - column:
+                  name: modified
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'

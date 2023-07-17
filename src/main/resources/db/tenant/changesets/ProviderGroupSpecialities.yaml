@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_provider_speciality_type_table
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: provider_group_speciality
+            columns:
+              - column:
+                  name: provider_group_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: speciality_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+            primaryKey:
+              columnNames: provider_group_id, speciality_id
+            foreignKeys:
+              - foreignKey:
+                  constraintName: fk1mg0by4o2s1m6qawr1xihwj8lw3
+                  referencedColumnNames: id
+                  referencedTableName: provider_group
+                  onUpdate: NO ACTION
+                  onDelete: CASCADE
+              - foreignKey:
+                  constraintName: fkdaxbvf3pto0drftvuaquy7lx1ew3
+                  referencedColumnNames: id
+                  referencedTableName: speciality
+                  onUpdate: NO ACTION
+                  onDelete: CASCADE

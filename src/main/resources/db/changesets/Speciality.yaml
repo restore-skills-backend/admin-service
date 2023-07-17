@@ -1,0 +1,113 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTableSpeciality
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: speciality
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+  - changeSet:
+      id: insert-speciality-type
+      author: Rohit
+      changes:
+        - insert:
+            columns:
+              - column:
+                  name: name
+                  value: DENTIST
+            schemaName: public
+            tableName: speciality
+        - insert:
+            columns:
+              - column:
+                  name: name
+                  value: PHYSIOTHERAPIST
+            schemaName: public
+            tableName: speciality
+        - insert:
+            columns:
+              - column:
+                  name: name
+                  value: NATUROPATH
+            schemaName: public
+            tableName: speciality
+        - insert:
+            columns:
+              - column:
+                  name: name
+                  value: GYNAECOLOGIST
+            schemaName: public
+            tableName: speciality
+        - insert:
+            columns:
+              - column:
+                  name: name
+                  value: ORTHOPEDIST
+            schemaName: public
+            tableName: speciality
+        - insert:
+            columns:
+              - column:
+                  name: name
+                  value: PEDIATRICIAN
+            schemaName: public
+            tableName: speciality
+        - insert:
+            columns:
+              - column:
+                  name: name
+                  value: ACUPUNCTURIST
+            schemaName: public
+            tableName: speciality
+  - changeSet:
+      id: delete-existing-data-public
+      author: Rohit
+      changes:
+        - delete:
+            tableName: speciality
+            where: name='DENTIST'
+        - delete:
+            tableName: speciality
+            where: name='PHYSIOTHERAPIST'
+        - delete:
+            tableName: speciality
+            where: name='NATUROPATH'
+        - delete:
+            tableName: speciality
+            where: name='GYNAECOLOGIST'
+        - delete:
+            tableName: speciality
+            where: name='ORTHOPEDIST'
+        - delete:
+            tableName: speciality
+            where: name='PEDIATRICIAN'
+        - delete:
+            tableName: speciality
+            where: name='ACUPUNCTURIST'
+  - changeSet:
+      id: loadData-Specialities-public
+      author: Rohit
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  header: SPECIALITIES
+                  name: name
+                  type: VARCHAR(255)
+            commentLineStartsWith: //
+            encoding: UTF-8
+            file: db/data/Specialities.csv
+            quotchar: '""'
+            relativeToChangelogFile: false
+            separator: ','
+            tableName: speciality
+            usePreparedStatements: true

@@ -1,0 +1,70 @@
+databaseChangeLog:
+  - changeSet:
+      id: createMappingTableInsuranceProvider
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: insurance_provider_mapping
+            columns:
+              - column:
+                  name: insurance_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: provider_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+            primaryKey:
+              columnNames: insurance_id, provider_id
+            foreignKeys:
+              - foreignKey:
+                  constraintName: insurance_provider_mapping
+                  baseColumnNames: insurance_id
+                  baseTableName: insurance_provider_mapping
+                  referencedColumnNames: id
+                  referencedTableName: insurance
+                  onUpdate: NO ACTION
+                  onDelete: CASCADE
+              - foreignKey:
+                  constraintName: provider_insurance_mapping
+                  baseColumnNames: provider_id
+                  baseTableName: insurance_provider_mapping
+                  referencedColumnNames: id
+                  referencedTableName: provider
+                  onUpdate: NO ACTION
+                  onDelete: CASCADE
+  - changeSet:
+      id: changeMappingTableInsuranceProvider
+      author: Rohit
+      changes:
+        - renameTable:
+            oldTableName: insurance_provider_mapping
+            newTableName: provider_insurance
+  - changeSet:
+      id: changeMappingTableInsuranceProviderPayer
+      author: Rohit
+      changes:
+        - renameColumn:
+            tableName: provider_insurance
+            oldColumnName: insurance_id
+            newColumnName: insurance_payer_id
+            columnDataType: BIGINT
+        - addForeignKeyConstraint:
+            constraintName: insurance_payer_provider_mapping
+            baseColumnNames: insurance_payer_id
+            baseTableName: provider_insurance
+            referencedColumnNames: id
+            referencedTableName: insurance_payer
+            onUpdate: NO ACTION
+            onDelete: CASCADE
+  - changeSet:
+      id: changeMappingTableInsurancePayerProvider
+      author: Rohit
+      changes:
+        - renameTable:
+            oldTableName: provider_insurance
+            newTableName: provider_insurance_payer
+
+

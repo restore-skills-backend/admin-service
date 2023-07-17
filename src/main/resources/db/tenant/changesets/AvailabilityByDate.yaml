@@ -1,0 +1,93 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_table_availability_by_date
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: availability_by_date
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: location_entity_id
+                  type: bigint
+              - column:
+                  name: availability_operation_type
+                  type: varchar(255)
+              - column:
+                  name: date
+                  type: date
+              - column:
+                  name: start
+                  type: time
+              - column:
+                  name: end
+                  type: time
+              - column:
+                  name: created_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+              - column:
+                  name: modified
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+            constraints:
+              - foreignKey:
+                  constraintName: fk_availability_by_date_location_entity
+                  baseColumnNames: location_entity_id
+                  referencedTableName: location
+                  referencedColumnNames: id
+                  onDelete: CASCADE
+  - changeSet:
+      id: add_provider_column_to_availability_by_date
+      author: Rohit
+      changes:
+        - addColumn:
+            tableName: availability_by_date
+            columns:
+              - column:
+                  name: provider_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: availability_by_date
+            baseColumnNames: provider_id
+            referencedTableName: provider
+            referencedColumnNames: id
+            constraintName: fk_availability_provider_id
+
+  - changeSet:
+      id: change_column_name_provider_column_to_availability_by_date
+      author: Rohit
+      changes:
+        - renameColumn:
+            tableName: availability_by_date
+            oldColumnName: start
+            newColumnName: start_time
+        - renameColumn:
+            tableName: availability_by_date
+            oldColumnName: end
+            newColumnName: end_time
+        - renameColumn:
+            tableName: availability_by_date
+            oldColumnName: date
+            newColumnName: change_date

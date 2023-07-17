@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_notification_type_table
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: notification_type
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(255)
+
+  - changeSet:
+      id: insert_notification_types
+      author: Rohit
+      changes:
+        - insert:
+            tableName: notification_type
+            columns:
+              - column:
+                  name: type
+                  value: A reminder 10 minutes before scheduled appointment
+        - insert:
+            tableName: notification_type
+            columns:
+              - column:
+                  name: type
+                  value: Patient books an appointment
+        - insert:
+            tableName: notification_type
+            columns:
+              - column:
+                  name: type
+                  value: Patient cancel an appointment
+        - insert:
+            tableName: notification_type
+            columns:
+              - column:
+                  name: type
+                  value: Patient check in notification
+        - insert:
+            tableName: notification_type
+            columns:
+              - column:
+                  name: type
+                  value: Patient payment notification
+        - insert:
+            tableName: notification_type
+            columns:
+              - column:
+                  name: type
+                  value: A schedule payment from patient successful

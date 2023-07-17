@@ -1,0 +1,102 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_provider_notification_mapping_table
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: provider_notification_mapping
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: provider_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: notification_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: allowPush
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: allowText
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: allowEmail
+                  type: boolean
+                  constraints:
+                    nullable: false
+            foreignKeys:
+              - foreignKey:
+                  name: fk_provider_notification_mapping_provider
+                  baseTableName: provider_notification_mapping
+                  baseColumnNames: provider_id
+                  referencedTableName: provider
+                  referencedColumnNames: id
+              - foreignKey:
+                  name: fk_provider_notification_mapping_notification_type
+                  baseTableName: provider_notification_mapping
+                  baseColumnNames: notification_type_id
+                  referencedTableName: notification_type
+                  referencedColumnNames: id
+  - changeSet:
+      id: rename_columns_provider_notification_mapping
+      author: Rohit
+      changes:
+        - renameColumn:
+            tableName: provider_notification_mapping
+            oldColumnName: allowPush
+            newColumnName: allow_push
+            columnDataType: boolean
+        - renameColumn:
+            tableName: provider_notification_mapping
+            oldColumnName: allowText
+            newColumnName: allow_text
+            columnDataType: boolean
+        - renameColumn:
+            tableName: provider_notification_mapping
+            oldColumnName: allowEmail
+            newColumnName: allow_email
+            columnDataType: boolean
+
+  - changeSet:
+      id: add_base_columns
+      author: Rohit
+      changes:
+        - addColumn:
+            tableName: provider_notification_mapping
+            columns:
+              - column:
+                  name: created_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+              - column:
+                  name: modified
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'

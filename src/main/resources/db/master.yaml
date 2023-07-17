@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - include:
+      file: db/changesets/Address.yaml
+  - include:
+      file: db/changesets/ProviderGroup.yaml
+  - include:
+      file: db/changesets/PracticeHours.yaml
+  - include:
+      file: db/changesets/Speciality.yaml
+  - include:
+      file: db/changesets/ProviderGroupSpecialities.yaml
+  - include:
+      file: db/changesets/User.yaml
+  - include:
+      file: db/changesets/LabCatalog.yaml
+  - include:
+      file: db/changesets/DrugCatalog.yaml
+  - include:
+      file: db/changesets/RadiologyCatalog.yaml
+  - include:
+      file: db/changesets/DiagnosisCode.yaml
+  - include:
+      file: db/changesets/ProceduralCode.yaml

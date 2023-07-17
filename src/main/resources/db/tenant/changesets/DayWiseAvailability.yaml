@@ -1,0 +1,55 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_table_day_wise_availability
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: day_wise_availability
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: availability_id
+                  type: bigint
+              - column:
+                  name: day_of_week
+                  type: varchar(255)
+              - column:
+                  name: start_time
+                  type: time
+              - column:
+                  name: end_time
+                  type: time
+              - column:
+                  name: created_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+              - column:
+                  name: modified
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+            constraints:
+              - foreignKey:
+                  constraintName: fk_day_wise_availability_availability
+                  baseColumnNames: availability_id
+                  referencedTableName: availability
+                  referencedColumnNames: id
+                  onDelete: CASCADE

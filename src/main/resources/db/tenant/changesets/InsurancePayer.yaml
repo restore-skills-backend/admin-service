@@ -1,0 +1,77 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTableInsurancePayer
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: insurance_payer
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+        - insert:
+            columns:
+              - column:
+                  name: name
+                  value: Athena PPO
+            tableName: insurance_payer
+        - insert:
+            columns:
+              - column:
+                  name: name
+                  value: Multiplan PPO
+            tableName: insurance_payer
+  -  changeSet:
+       id:  delete-existing-data
+       author: Rohit
+       changes:
+         -  delete:
+              tableName:  insurance_payer
+              where:  name='Athena PPO'
+         - delete:
+             tableName: insurance_payer
+             where: name='Multiplan PPO'
+  - changeSet:
+      id: renameColumnName
+      author: Rohit
+      changes:
+        - renameColumn:
+            tableName: insurance_payer
+            oldColumnName: name
+            newColumnName: payer_name
+            columnDataType: VARCHAR(255)
+        - addColumn:
+            tableName: insurance_payer
+            columns:
+              - column:
+                  name: payer_id
+                  type: VARCHAR(255)
+  - changeSet:
+      id: loadData-insurancePayer
+      author: Rohit
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  header: PAYER_ID
+                  name: payer_id
+                  type: VARCHAR(255)
+              - column:
+                  header: PAYER_NAME
+                  name: payer_name
+                  type: VARCHAR(255)
+            commentLineStartsWith: //
+            encoding: UTF-8
+            file: db/data/InsurancePayerList.csv
+            quotchar: '""'
+            relativeToChangelogFile: false
+            separator: ','
+            tableName: insurance_payer
+            usePreparedStatements: true
+

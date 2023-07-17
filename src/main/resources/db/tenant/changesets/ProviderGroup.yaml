@@ -1,0 +1,130 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-provider-group
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: provider_group
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: uuid
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: db_schema
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: iam_group
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: subdomain
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: contact_number
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: npi_number
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: website
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: fax
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: description
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: physical_address_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: billing_address_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: active
+                  type: boolean
+                  defaultValueBoolean: false
+              - column:
+                  name: archive
+                  type: boolean
+                  defaultValueBoolean: false
+              - column:
+                  name: created_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+              - column:
+                  name: modified
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+              - column:
+                  name: avatar
+                  type: varchar(10000)
+
+        - addForeignKeyConstraint:
+            baseTableName: provider_group
+            baseColumnNames: physical_address_id
+            referencedTableName: address
+            referencedColumnNames: id
+            constraintName: fk_physical_address
+        - addForeignKeyConstraint:
+            baseTableName: provider_group
+            baseColumnNames: billing_address_id
+            referencedTableName: address
+            referencedColumnNames: id
+            constraintName: fk_billing_address

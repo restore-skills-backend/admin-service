@@ -1,0 +1,474 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTableCountryState
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: country_state
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: country
+                  type: VARCHAR(255)
+              - column:
+                  name: state
+                  type: VARCHAR(255)
+  - changeSet:
+      id: insert-country-state
+      author: Rohit
+      changes:
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Alabama (AL)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Alaska (AK)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Arizona (AZ)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Arkansas (AR)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: California (CA)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Colorado (CO)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Connecticut (CT)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Delaware (DE)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Florida (FL)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Georgia (GA)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Hawaii (HI)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Idaho (ID)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Illinois (IL)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Indiana (IN)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Iowa (IA)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Kansas (KS)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Kentucky (KY)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Louisiana (LA)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Maine (ME)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Maryland (MD)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Massachusetts (MA)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Michigan (MI)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Minnesota (MN)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Mississippi (MS)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Missouri (MO)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Montana (MT)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Nebraska (NE)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Nevada (NV)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: New Hampshire (NH)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: New Jersey (NJ)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: New Mexico (NM)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: New York (NY)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: North Carolina (NC)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: North Dakota (ND)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Ohio (OH)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Oklahoma (OK)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Oregon (OR)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Pennsylvania (PA)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Rhode Island (RI)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: South Carolina (SC)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: South Dakota (SD)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Tennessee (TN)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Texas (TX)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Utah (UT)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Vermont (VT)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Virginia (VA)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Washington (WA)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: West Virginia (WV)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Wisconsin (WI)
+            tableName: country_state
+        - insert:
+            columns:
+              - column:
+                  name: country
+                  value: US
+              - column:
+                  name: state
+                  value: Wyoming (WY)
+            tableName: country_state

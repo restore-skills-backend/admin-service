@@ -1,0 +1,87 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTableInsurance
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: insurance
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: insurance_type
+                  type: VARCHAR(255)
+              - column:
+                  name: insurance_payer
+                  type: VARCHAR(255)
+              - column:
+                  name: member_id
+                  type: VARCHAR(255)
+              - column:
+                  name: plan_id
+                  type: VARCHAR(255)
+              - column:
+                  name: group_id
+                  type: VARCHAR(255)
+              - column:
+                  name: group_name
+                  type: VARCHAR(255)
+              - column:
+                  name: policy_holder_relationship
+                  type: VARCHAR(255)
+              - column:
+                  name: firstname
+                  type: VARCHAR(255)
+              - column:
+                  name: lastname
+                  type: VARCHAR(255)
+              - column:
+                  name: dob
+                  type: TIMESTAMP
+              - column:
+                  name: country
+                  type: VARCHAR(255)
+              - column:
+                  name: address
+                  type: VARCHAR(255)
+              - column:
+                  name: zipcode
+                  type: VARCHAR(255)
+  - changeSet:
+      id: addColumnsBaseAndUUID
+      author: Rohit
+      changes:
+        - addColumn:
+            tableName: insurance
+            columns:
+              - column:
+                  name: uuid
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+              - column:
+                  name: modified
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'

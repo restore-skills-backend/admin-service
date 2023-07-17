@@ -1,0 +1,116 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTableProviderProfileInfo
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: provider_profile_info
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: sub_speciality
+                  type: VARCHAR(255)
+              - column:
+                  name: hospital_affilation
+                  type: VARCHAR(255)
+              - column:
+                  name: age_group_seen
+                  type: VARCHAR(255)
+              - column:
+                  name: language_spoken
+                  type: VARCHAR(255)
+              - column:
+                  name: referral_number
+                  type: VARCHAR(255)
+              - column:
+                  name: accept_new_patients
+                  type: BOOLEAN
+              - column:
+                  name: accept_cash_pay
+                  type: BOOLEAN
+              - column:
+                  name: insurance_verification
+                  type: VARCHAR(255)
+              - column:
+                  name: prior_authorisation
+                  type: VARCHAR(255)
+              - column:
+                  name: second_opinion
+                  type: VARCHAR(255)
+              - column:
+                  name: acute_speciality
+                  type: VARCHAR(255)
+              - column:
+                  name: bio
+                  type: VARCHAR(255)
+              - column:
+                  name: expertise_in
+                  type: VARCHAR(255)
+              - column:
+                  name: work_experience
+                  type: VARCHAR(255)
+  - changeSet:
+      id: addColumnsBase
+      author: Rohit
+      changes:
+        - addColumn:
+            tableName: provider_profile_info
+            columns:
+              - column:
+                  name: uuid
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+              - column:
+                  name: modified
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+  - changeSet:
+      id: addColumnsAcceptCashPay
+      author: Rohit
+      changes:
+        - addColumn:
+            tableName: provider_profile_info
+            columns:
+              - column:
+                  name: accept_cashpay
+                  type: uuid
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: dropColumnUUUIDFromProviderInfo
+      author: Rohit
+      changes:
+        - dropColumn:
+            columnName: uuid
+            tableName: provider_profile_info
+  - changeSet:
+      id: dropColumnAcceptCashPayyFromProviderInfo
+      author: Rohit
+      changes:
+        - dropColumn:
+            columnName: accept_cashpay
+            tableName: provider_profile_info

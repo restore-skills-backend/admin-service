@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTableInsuranceDocuments
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: insurance_documents
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: document_key
+                  type: VARCHAR(255)
+  - changeSet:
+      id: changeMappingTableInsuranceDocumentAddUUID
+      author: Rohit
+      changes:
+        - addColumn:
+            - tableName: insurance_documents
+            - columns:
+                - column:
+                    name: uuid
+                    type: uuid
+                    constraints:
+                      nullable: false

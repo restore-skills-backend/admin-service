@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_table_block_day
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: block_day
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: availability_id
+                  type: bigint
+              - column:
+                  name: from_date
+                  type: date
+              - column:
+                  name: to_date
+                  type: date
+              - column:
+                  name: created_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+              - column:
+                  name: modified
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+            constraints:
+              - foreignKey:
+                  constraintName: fk_block_day_availability
+                  baseColumnNames: availability_id
+                  referencedTableName: availability
+                  referencedColumnNames: id
+                  onDelete: CASCADE

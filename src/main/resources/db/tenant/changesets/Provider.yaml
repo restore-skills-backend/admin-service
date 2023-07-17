@@ -1,0 +1,265 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTableProvider
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: provider
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: provider_type
+                  type: VARCHAR(255)
+              - column:
+                  name: user_role_id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gender
+                  type: VARCHAR(255)
+              - column:
+                  name: npi_number
+                  type: VARCHAR(255)
+              - column:
+                  name: phone_number
+                  type: VARCHAR(255)
+              - column:
+                  name: fax_number
+                  type: VARCHAR(255)
+              - column:
+                  name: group_npi_number
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: country_state_id
+                  type: BIGINT
+              - column:
+                  name: licensed_number
+                  type: VARCHAR(255)
+              - column:
+                  name: year_of_experience
+                  type: VARCHAR(255)
+              - column:
+                  name: taxonomy_number
+                  type: VARCHAR(255)
+              - column:
+                  name: work_location_id
+                  type: BIGINT
+              - column:
+                  name: provider_info_id
+                  type: BIGINT
+              - column:
+                  name: is_active
+                  type: BOOLEAN
+              - column:
+                  name: profile_image_key
+                  type: VARCHAR(255)
+            constraints:
+              - uniqueConstraint:
+                  columnNames: email
+              - uniqueConstraint:
+                  columnNames: group_npi_number
+        - addForeignKeyConstraint:
+            constraintName: provider_user_role
+            baseTableName: provider
+            baseColumnNames: user_role_id
+            referencedTableName: user_roles
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            constraintName: provider_country_state
+            baseTableName: provider
+            baseColumnNames: country_state_id
+            referencedTableName: country_state
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            constraintName: provider_work_location
+            baseTableName: provider
+            baseColumnNames: work_location_id
+            referencedTableName: address
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            constraintName: provider_info_mapping
+            baseTableName: provider
+            baseColumnNames: provider_info_id
+            referencedTableName: provider_profile_info
+            referencedColumnNames: id
+
+  - changeSet:
+      id: changeMappingTableInsuranceProvider
+      author: Rohit
+      changes:
+        - addColumn:
+            - tableName: provider
+            - columns:
+              - column:
+                  name: uuid
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    - nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: provider
+            constraintName: add_foreign_key_user_Id_user
+            referencedColumnNames: id
+            referencedTableName: users
+
+  - changeSet:
+      id: dropColumnFromProvider
+      author: Rohit
+      changes:
+        - dropColumn:
+            columnName: is_active
+            tableName: provider
+        - addColumn:
+            tableName: provider
+            columns:
+              - column:
+                  name: active
+                  type: boolean
+                  constraints:
+                    nullable: false
+                  defaultValue: false
+  - changeSet:
+      id: remove-foreign-key-constraint
+      author: Rohit
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: provider
+            constraintName: provider_user_role
+  - changeSet:
+      id: dropColumnUserRoleFromProvider
+      author: Rohit
+      changes:
+        - dropColumn:
+            columnName: user_role_id
+            tableName: provider
+  - changeSet:
+      id: remove-user-roles-table
+      author: Rohit
+      changes:
+        - dropTable:
+            tableName: user_roles
+  - changeSet:
+      id: addColumnUserType
+      author: Rohit
+      changes:
+        - addColumn:
+            tableName: provider
+            columns:
+              - column:
+                  name: user_type
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                  defaultValue: false
+  - changeSet:
+      id: addColumnsBaseAndAvtar
+      author: Rohit
+      changes:
+        - addColumn:
+            tableName: provider
+            columns:
+              - column:
+                  name: avtar
+                  type: VARCHAR(255)
+              - column:
+                  name: archive
+                  type: boolean
+                  constraints:
+                    nullable: false
+                  defaultValue: false
+              - column:
+                  name: created_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+              - column:
+                  name: modified
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+  - changeSet:
+      id: dropColumnlicensedNumberProfileImageKeyFromProvider
+      author: Rohit
+      changes:
+        - dropColumn:
+            columnName: licensed_number
+            tableName: provider
+        - dropColumn:
+            columnName: profile_image_key
+            tableName: provider
+  - changeSet:
+      id: addColumnlicence_number
+      author: Rohit
+      changes:
+        - addColumn:
+            tableName: provider
+            columns:
+              - column:
+                  name: licence_number
+                  type: VARCHAR(255)
+  - changeSet:
+      id: drop_column_email_npi_number_provider
+      author: Rohit
+      changes:
+        - dropColumn:
+            columnName: email
+            tableName: provider
+        - dropColumn:
+            columnName: npi_number
+            tableName: provider
+  - changeSet:
+      id: add_column_npi_number_provider
+      author: Rohit
+      changes:
+        - addColumn:
+            tableName: provider
+            columns:
+              - column:
+                  name: npi_number
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+                    unique: true
+  - changeSet:
+      id: modify-column-npi-number-group-npi-number
+      author: Rohit
+      changes:
+        - modifyDataType:
+            tableName: provider
+            columnName: npi_number
+            newDataType: BIGINT
+        - modifyDataType:
+            tableName: provider
+            columnName: group_npi_number
+            newDataType: BIGINT

@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-drug-catalog
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: drug_catalog
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: speciality
+                  type: varchar(255)
+              - column:
+                  name: type
+                  type: varchar(255)
+              - column:
+                  name: medicine
+                  type: varchar(255)
+              - column:
+                  name: dose
+                  type: varchar(255)
+              - column:
+                  name: when_field
+                  type: varchar(255)
+              - column:
+                  name: where_field
+                  type: varchar(255)
+              - column:
+                  name: frequency
+                  type: varchar(255)
+              - column:
+                  name: duration
+                  type: varchar(255)
+              - column:
+                  name: quantity
+                  type: varchar(255)
+              - column:
+                  name: notes
+                  type: varchar(255)
+              - column:
+                  name: active
+                  type: boolean
+                  defaultValueBoolean: true

@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-address
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: address
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: address1
+                  type: varchar(255)
+              - column:
+                  name: address2
+                  type: varchar(255)
+              - column:
+                  name: city
+                  type: varchar(255)
+              - column:
+                  name: state
+                  type: varchar(255)
+              - column:
+                  name: country
+                  type: varchar(255)
+              - column:
+                  name: zipcode
+                  type: varchar(255)
+  - changeSet:
+      id: rename_address_lines
+      author: Tejas
+      changes:
+        - renameColumn:
+            tableName: address
+            oldColumnName: address1
+            newColumnName: line1
+            columnDataType: varchar(255)
+        - renameColumn:
+            tableName: address
+            oldColumnName: address2
+            newColumnName: line2
+            columnDataType: varchar(255)

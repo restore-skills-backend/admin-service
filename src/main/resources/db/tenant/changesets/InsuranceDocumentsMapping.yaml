@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: createMappingTableInsuranceDocuments
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: insurance_documents_mapping
+            columns:
+              - column:
+                  name: insurance_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: document_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+            primaryKey:
+              columnNames: insurance_id, document_id
+            foreignKeys:
+              - foreignKey:
+                  constraintName: insurance_document_mapping
+                  baseColumnNames: insurance_id
+                  baseTableName: insurance_documents_mapping
+                  referencedColumnNames: id
+                  referencedTableName: insurance
+                  onUpdate: NO ACTION
+                  onDelete: CASCADE
+              - foreignKey:
+                  constraintName: document_insurance_mapping
+                  baseColumnNames: document_id
+                  baseTableName: insurance_documents_mapping
+                  referencedColumnNames: id
+                  referencedTableName: insurance_documents
+                  onUpdate: NO ACTION
+                  onDelete: CASCADE

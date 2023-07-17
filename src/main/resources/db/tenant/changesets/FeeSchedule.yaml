@@ -1,0 +1,87 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_fee_schedule_table
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: fee_schedule
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: provider_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cpt_code_type
+                  type: VARCHAR(255)
+              - column:
+                  name: cpt_code
+                  type: VARCHAR(255)
+              - column:
+                  name: modifier
+                  type: VARCHAR(255)
+              - column:
+                  name: ndc_code
+                  type: VARCHAR(255)
+              - column:
+                  name: amount
+                  type: DECIMAL(19,2)
+              - column:
+                  name: ndc_quantity
+                  type: INT
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  name: active
+                  type: BOOLEAN
+              - column:
+                  name: archive
+                  type: BOOLEAN
+              - column:
+                  name: created_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+              - column:
+                  name: modified
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: 'now()'
+            constraints:
+              - foreignKey:
+                  constraintName: fk_provider_entity
+                  baseColumnNames: provider_id
+                  referencedTableName: provider
+                  referencedColumnNames: id
+                  onDelete: CASCADE
+  - changeSet:
+      id: add_uuid_in_fee_schedule
+      author: Rohit
+      changes:
+        - addColumn:
+            tableName: fee_schedule
+            columns:
+              - column:
+                  name: uuid
+                  type: uuid
+                  constraints:
+                    nullable: false

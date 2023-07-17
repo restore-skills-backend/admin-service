@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_location_speciality_type_table
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: provider_location
+            columns:
+              - column:
+                  name: location_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: speciality_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+            primaryKey:
+              columnNames: location_id, speciality_id
+            foreignKeys:
+              - foreignKey:
+                  constraintName: location_id_fk
+                  referencedColumnNames: id
+                  referencedTableName: location
+                  onUpdate: NO ACTION
+                  onDelete: CASCADE
+              - foreignKey:
+                  constraintName: speciality_id_fk
+                  referencedColumnNames: id
+                  referencedTableName: speciality
+                  onUpdate: NO ACTION
+                  onDelete: CASCADE
+  - changeSet:
+      id: change_table_name_for_location_speciality
+      author: Rohit
+      changes:
+        - renameTable:
+            oldTableName: provider_location
+            newTableName: location_speciality

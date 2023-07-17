@@ -1,0 +1,67 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: restore-admin-service
+
+  profiles:
+    active: dev
+
+  security:
+    oauth2:
+      resourceserver:
+        opaquetoken:
+          introspection-uri: ${keycloak.base-url}/realms/${keycloak.realm}/protocol/openid-connect/token/introspect
+          client-id: ${keycloak.client-id}
+          client-secret: ${keycloak.client-secret}
+
+  datasource:
+    url: jdbc:postgresql://65.2.116.220:5432/ecarepro
+    username: ecarepro
+    password: thinkitive123
+    driver-class-name: org.postgresql.Driver
+  hikari:
+    maximum-pool-size: 1
+    minimum-idle: 5
+
+  liquibase:
+    change-log: classpath:db/master.yaml
+    enabled: true
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 50000
+        readTimeout: 50000
+        loggerLevel: basic
+    notification:
+      url: http://localhost:8002/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+keycloak:
+  realm: development
+  base-url: http://localhost:8090
+  auth-url: ${keycloak.base-url}/
+  client-id: restore-dev
+  client-secret: HKzn20RSTAvfbzfp5vEl0iyfTdbltslq
+
+springdoc:
+  swagger-ui:
+    path: /api/admin/swagger-ui.html
+  api-docs:
+    path: /api/admin/api-docs
+  show-actuator: true
+  
+aws:
+  access-key: access-key
+  secret-key: secret-key
+  region: region
+  s3:
+    bucket-name: bucket-name

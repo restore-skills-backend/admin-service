@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-practice-hours
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: practice_hours
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: day_of_week
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: opening_time
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: closing_time
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: provider_group_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+        - addForeignKeyConstraint:
+            baseTableName: practice_hours
+            baseColumnNames: provider_group_id
+            referencedTableName: provider_group
+            referencedColumnNames: id
+            constraintName: fk_provider_group

@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_location_provider_table
+      author: Rohit
+      changes:
+        - createTable:
+            tableName: provider_location_mapping
+            columns:
+              - column:
+                  name: provider_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: location_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+            primaryKey:
+              columnNames: provider_id,location_id
+            foreignKeys:
+              - foreignKey:
+                  constraintName: provider_id_fk
+                  referencedColumnNames: id
+                  referencedTableName: provider
+                  onUpdate: NO ACTION
+                  onDelete: CASCADE
+              - foreignKey:
+                  constraintName: location_id_fk
+                  referencedColumnNames: id
+                  referencedTableName: location
+                  onUpdate: NO ACTION
+                  onDelete: CASCADE
+  - changeSet:
+      id: change_table_name_for_provider_location_mapping
+      author: Rohit
+      changes:
+        - renameTable:
+            oldTableName: provider_location_mapping
+            newTableName: provider_location
