@@ -6,7 +6,7 @@ spring:
     name: restore-admin-service
 
   profiles:
-    active: dev
+    active: local
 
   security:
     oauth2:
